@@ -18,6 +18,7 @@
                   Login
                 </button>
           </form>
+          <a href= "registrationform.php"> Don't have an account? Register Here </a>
 
 </body>
 </html>

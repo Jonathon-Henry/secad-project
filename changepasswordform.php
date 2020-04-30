@@ -1,5 +1,5 @@
 <?php
-  require "session_auth.php";
+  #require "session_auth.php";
   $rand= bin2hex(openssl_random_pseudo_bytes(16));
   $_SESSION["nocsrftoken"] = $rand;
 ?>

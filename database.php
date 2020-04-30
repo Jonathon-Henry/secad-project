@@ -1,5 +1,5 @@
 <?php
-	$mysqli = new mysqli('localhost', 'admin', 'P4$$w0rd', 'secad');
+	$mysqli = new mysqli('localhost', 'scheetzj2', 'mysecretP4$$', 'secad');
 	if ($mysqli->connect_error){
 		printf("Database connection failed : %s\n", $mysqli->connect_error);
 	exit();
