@@ -7,7 +7,7 @@
 <body>
       	<h2>Sign up for a new MiniFacebook Accoount</h2>
 
-      	<h4>By Jacob Scheetz & Johnathan Henry</h4>
+      	<h4>By Jacob Scheetz & Jonathon Henry</h4>
 
 <?php
   //some code here
@@ -19,7 +19,7 @@
                 	pattern="^[\w.-]+@[\w-]+(.[\w-]+)*$" title="Please enter a valid email as username"
                 	placeholder="Your email address here"
                 	onchange="this.setCustomValidity(this.validity.patternMismatch?this.title: '');"/> <br>
-                Password: 
+                Password:
                 <input type="password" class="text_field" name="password" required
                 			placeholder="Your password"
                 			pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&])[\w!@#$%^&]{8,}$"
@@ -39,4 +39,3 @@
 
 </body>
 </html>
-

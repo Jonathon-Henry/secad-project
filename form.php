@@ -5,7 +5,7 @@
   <title>Login page - SecAD</title>
 </head>
 <body>
-      	<h1>Login for MiniFacebook, By Jacob Scheetz & Johnathan Henry</h1>
+      	<h1>Login for MiniFacebook, By Jacob Scheetz & Jonathon Henry</h1>
 
 <?php
   //some code here
@@ -22,4 +22,3 @@
 
 </body>
 </html>
-
