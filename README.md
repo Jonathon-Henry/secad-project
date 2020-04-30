@@ -1,10 +1,10 @@
-### CPS 475/575 Secure Application Development 
+### CPS 475/575 Secure Application Development
 
-# Final Report Template 
+# Final Report Template
 
 Names: Jacob Scheetz, Johnathan Henry
-Instructor: Dr. Phung 
-ID #'s: 1015372081, 
+Instructor: Dr. Phung
+ID #'s: 1015372081, 1014656801 
 Course: CPS 475, Secure Application Development
 Team emails: scheetzj2@udayton.edu, henryj14@udayton.edu
 
@@ -19,7 +19,7 @@ _Overview of your project design, development, and your achievement. Remember to
 
 # 2. Design
 
-_Describe your design of:_ 
+_Describe your design of:_
 
 
 *   Database
@@ -47,9 +47,9 @@ _You need to capture screenshots to demonstrate how your web application works. 
 
 *   Everyone can register a new account and then login
 *   Superuser can disable an account
-    *   The disabled account cannot log in 
+    *   The disabled account cannot log in
     *   Superuser can enable the disabled account
-    *   The enabled user can log in	
+    *   The enabled user can log in
 *   A regular logged-in user can delete her own existing posts, but cannot delete the posts of others
 *   CSRF attack to delete a post should be detected and prevented
 *   A regular logged-in user cannot access the link for superusers
@@ -57,5 +57,5 @@ _You need to capture screenshots to demonstrate how your web application works. 
 
 # Appendix
 
-Include the content (in text) of the README.md file, database.sql and all source code of your PHP files (with the file name). 
+Include the content (in text) of the README.md file, database.sql and all source code of your PHP files (with the file name).
 If you organize your project in sub-folders, include the files in the sub folders as well.
