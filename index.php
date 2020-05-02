@@ -59,3 +59,31 @@
 		return FALSE;
   	}
 ?>
+
+
+
+<?php
+	date_default_timezone_set('America/New_York');
+?>
+
+<html> 
+
+<body>
+<!-- show post here-->
+
+
+<!-- comment section here --> 
+<?php
+echo "<form> 
+	<input type='hidden' name='username' value='username'>
+	<input type='hidden' name='date' value='".date('Y-m-d H:i:s')."'>
+	<textarea name='message'></textarea>
+	<button type='submit' name='submit'> Comment </button>
+</form>";
+?>
+
+</body>
+
+</html>
+
+
