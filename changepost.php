@@ -1,10 +1,13 @@
 
 <?php
+
 	require "session_auth.php";
 	require 'database.php';
-	$username= $_REQUEST["username"];
-	$newpassword = $_REQUEST["newpassword"];
-	$nocsrftoken = $POST["nocsrftoken"];
+	$nocsrftoken = sanitize_input($POST["nocsrftoken"]);
+	$newcontent = sanitize_input($_REQUEST["newcontent"]);
+	$newtitle = sanitize_input($_REQUEST["newtitle"];
+	$postid = sanitize_input($_REQUEST["postid"];
+	$newdate = sanitize_input($_REQUEST["newdate"];
 	if (isset($username) AND isset($newpassword)){
 		echo "DEBUG:changepassword.php->Got: username=$username;newpassword=$newpassword\n<br>";
 	} else {
