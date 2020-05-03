@@ -14,6 +14,16 @@
 		return TRUE;
 	}
 
+	function editpost($newtitle, $newcontent, $newdate, $postid){
+		global $mysqli;
+		$prepared_sql = "UPDATE posts SET title=?, content=?, newdate=? WHERE postid= ?;";
+		echo "DEBUG>prepared_sql= $prepared_sql\n";
+		if (!$stmt = $mysqli->prepare($prepared_sql)) return FALSE;
+		$stmt->bind_param("ssss", $newtitle, $newcontent, $newdate, $postid);
+		if(!$stmt->execute()) return FALSE;
+		return TRUE;
+	}
+
 	function sanitize_input($input){
 		$input = trim($input);
 		$input = stripslashes($input);
@@ -31,7 +41,7 @@
 
 	function validatePassword($password){
 		$password = sanitize_input($password);
-		if (empty($password) or 
+		if (empty($password) or
 			!preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&])[\w!@#$%^&]{8,}$/", $password)){
 			return FALSE;
 		}
