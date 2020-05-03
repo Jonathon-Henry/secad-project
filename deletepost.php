@@ -17,7 +17,7 @@
 		header("Refresh:0; url=logout.php");
 		die();
 	} else {
-		if ($username!=$_SESSION['username']) {
+		if ($username!=$_SESSION["username"]) {
 			echo "<script>alert('Cannot delete others posts!');</script>";
 			header("Refresh:0; url=logout.php");
 			die();
