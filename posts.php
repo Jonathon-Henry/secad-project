@@ -23,8 +23,14 @@
 	//Display the data from the variables (Should have HTML tags to provide a good presentation)
 	while($stmt->fetch()){
 		echo htmlentities($title) . ", " . htmlentities($content) . ", " .
-		htmlentities($date) . htmlentities($postid) . "<br>";
-		<a href="changepostform.php">Edit post</a> | <a href="logout.php">Logout</a>
+		htmlentities($date) . "<br>";
+		echo '<form action="changepostform.php" method="POST" class="form login">
+					<input type="hidden" name="postid" value="<?php echo htmlentities($postid); ?>" /> <br>
+					<input type="hidden" name="username" value="<?php echo $_SESSION(["username"]); ?>" />
+					<button class="button" type="submit">
+						Edit or Delete post
+					</button>
+		</form>';
 	}
 
 ?>
