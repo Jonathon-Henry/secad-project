@@ -42,6 +42,7 @@
                 <input type="hidden" name="postid" value="<?php echo $postid; ?>" />
                 <input type="hidden" name="nocsrftoken" value="<?php echo $rand; ?>" />
                 <input type="hidden" name="newdate" value="<?php echo date('Y-m-d h:i:sa'); ?>" />
+                <input type="hidden" name="username" value="<?php echo $username; ?>" />
                 Edit post title: <input class="text_field" name="newtitle" value="<?php echo $title; ?>" /> <br>
                 Edit post content: <input class="text_field" name="newcontent" value="<?php echo $content; ?>" /> <br>
                 <button class="button" type="submit">

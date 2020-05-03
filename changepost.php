@@ -8,19 +8,24 @@
 	$newtitle = sanitize_input($_REQUEST["newtitle"];
 	$postid = sanitize_input($_REQUEST["postid"];
 	$newdate = sanitize_input($_REQUEST["newdate"];
-	if (isset($username) AND isset($newpassword)){
-		echo "DEBUG:changepassword.php->Got: username=$username;newpassword=$newpassword\n<br>";
+	$username = sanitize_input($_REQUEST["username"];
+	if (isset($postid)){
+		echo "DEBUG:changepost.php->Got: postid=$postid;\n<br>";
 	} else {
-		echo "no provided username/password to change";
-		exit();
-	} else {
-		echo "No provided username/password to change";
+		echo "postid doesn't exist";
 		exit();
 	}
+
 	if (!isset($nocsrftoken) or ($nocsrftoken!=$_SESSION['nocsrftoken'])){
 		echo "<script>alert('Cross-site request forgery is detected!');</script>";
 		header("Refresh:0; url=logout.php");
 		die();
 	}
+	if ($username!=$_SESSION["username"]) {
+		echo "<script>alert('Cannot edit others' posts!');</script>";
+		header("Refresh:0; url=logout.php");
+		die();
+	}
+	editpost($newtitle, $newcontent, $newdate, $postid);
 ?>
 <a href="index.php">Home</a> | <a href="logout.php">Logout</a>
