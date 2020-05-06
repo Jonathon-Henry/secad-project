@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="stylesheet" type="text/css" href="style.css">
   <meta charset="utf-8">
-  <title>Login page - SecAD</title>
+  <title>Login MiniFacebook</title>
 </head>
 <body>
       	<h1>Login for MiniFacebook, By Jacob Scheetz & Jonathon Henry</h1>
@@ -18,7 +19,9 @@
                   Login
                 </button>
           </form>
-          <a href= "registrationform.php"> Don't have an account? Register Here </a>
+          <p> Don't have an account? click below to get signed up!</p>
+          <a href= 'registrationform.php'>
+          <button type='submit' action='registrationform.php'>Register</button>
 
 </body>
 </html>

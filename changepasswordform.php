@@ -1,5 +1,5 @@
 <?php
-  #require "session_auth.php";
+  //require "database.php";
   $rand= bin2hex(openssl_random_pseudo_bytes(16));
   $_SESSION["nocsrftoken"] = $rand;
 ?>
@@ -7,6 +7,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="stylesheet" type="text/css" href="style.css">
   <meta charset="utf-8">
   <title>Login page - SecAD</title>
 </head>
@@ -21,7 +22,7 @@
                 Username: <?php echo htmlentities($_SESSION["username"]); ?><br>
                 <input type="hidden" name="nocsrftoken" value="<?php echo $rand; ?>" />
                 New Password: <input type="password" class="text_field" name="newpassword" /> <br>
-                <button class="button" type="submit">
+                <button class="homepage-button" type="submit">
                   Change password
                 </button>
           </form>
