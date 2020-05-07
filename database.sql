@@ -23,9 +23,11 @@ DROP TABLE IF EXISTS `posts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `posts` (
-  `username` varchar(50) NOT NULL,
-  `date` varchar(25) NOT NULL,
-  `commments` varchar(255) NOT NULL
+  `PostId` int(20) NOT NULL AUTO_INCREMENT,
+  `username` varchar(75) NOT NULL,
+  `date` datetime NOT NULL,
+  `message` text NOT NULL,
+  PRIMARY KEY (`PostId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -46,12 +48,11 @@ DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users` (
-  `username` varchar(50) NOT NULL,
-  `password` varchar(100) NOT NULL,
+  `username` varchar(75) NOT NULL,
+  `password` varchar(125) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `phone` varchar(50) NOT NULL,
-  `name` varchar(50) NOT NULL,
-  `enable` tinyint(1) NOT NULL,
+  `phone` varchar(20) NOT NULL,
+  `enabled` tinyint(1) NOT NULL,
   PRIMARY KEY (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -62,7 +63,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES ('admin','*203EFDF5A3AFEA758624E98711CE09A0FD34DA08','admin@secad.org','123-456-7890','admin boss',1);
+INSERT INTO `users` VALUES ('admin','*203EFDF5A3AFEA758624E98711CE09A0FD34DA08','admin@secad.org','123-456-7890',1),('jacobScheetz','*203EFDF5A3AFEA758624E98711CE09A0FD34DA08','jacob@test.org','555-444-8888',0);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -103,4 +104,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-01  1:50:57
+-- Dump completed on 2020-05-07 19:44:15
