@@ -2,11 +2,11 @@
 
 # Final Report Template
 
-Names: Jacob Scheetz, Johnathan Henry <br />
-Instructor: Dr. Phung <br />
-ID #'s: 1015372081, 1014656801 <br />
-Course: CPS 475, Secure Application Development <br />
-Team emails: scheetzj2@udayton.edu, henryj14@udayton.edu
+Names: Jacob Scheetz, Johnathan Henry__  
+Instructor: Dr. Phung__   
+ID #'s: 1015372081, 1014656801__ 
+Course: CPS 475, Secure Application Development__ 
+Team emails: scheetzj2@udayton.edu, henryj14@udayton.edu__
 
 
 
@@ -42,17 +42,17 @@ _Include a brief explanation of your implementation and the security aspects bas
 _You need to capture screenshots to demonstrate how your web application works. The screenshots must be accompanied by a short description of its functionalities following the implementation as below:_
 
 *   Everyone can register a new account and then login
-	("registering.png") ("registered.png")
+	[registering]("registering.png") [registered]("registered.png")
 *   Superuser can disable an account 
-	("admin-abilities.png")
+	[superuser capabilities]("admin-abilities.png")
     *   The disabled account cannot log in
-    ("enabled.png")
+    [user enabled]("enabled.png")
 
     *   Superuser can enable the disabled account
-    (disbaled.png)
+    [user diabled](disabled.png)
     *   The enabled user can log in
 *   A regular logged-in user can delete her own existing posts, but cannot delete the posts of others
-	("comment-edit-delete.png") ("after-delete.png")
+	[edit comment]("comment-edit-delete.png") [after delete]("after-delete.png")
 *   CSRF attack to delete a post should be detected and prevented
 
 *   A logged-in user can have realtime chat with other logged-in users
