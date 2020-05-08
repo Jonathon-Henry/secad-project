@@ -48,6 +48,54 @@ $password = $_POST["password"];
 	<link rel="stylesheet" type="text/css" href="./style.css">
 	<title> Minifacebook Homepage </title>
 </head>
+<script src="https://localhost:4430/socket.io/socket.io.js"></script> <!-- CHANGE THIS IP ADDRESS TO YOUR HOST'S IP ADDRESS -->
+<script>
+function startTime() {
+    document.getElementById('clock').innerHTML = new Date();
+    setTimeout(startTime, 500);
+}
+if (window.WebSocket) {
+ console.log("HTML5 WebSocket is supported");
+} else {
+  alert("HTML5 WebSocket is not supported");
+}
+var myWebSocket = io.connect('https://localhost:4430'); //CHANGE THIS IP ADDRESS TO YOUR HOST'S IP ADDRESS
+myWebSocket.onopen = function() {
+	console.log('WebSocket opened');
+}
+myWebSocket.on("message",function(msg) {
+    console.log('Received from server: '+ msg);
+    document.getElementById("receivedmessage").innerHTML += sanitizeHTML(msg) + "<br>";
+});
+myWebSocket.on("typing",function(msg) {
+    document.getElementById("typing").innerHTML = "Someone is typing ... <br>";
+    setTimeout(function(){document.getElementById("typing").innerHTML = "<br>";}, 500);
+});
+myWebSocket.onclose = function() {
+	console.log('WebSocket closed');
+}
+
+function doSend(msg){
+    if (myWebSocket) {
+        myWebSocket.emit("message",msg);
+        console.log('Sent to server: ' +msg);
+    }
+}
+function entertoSend(e){
+  //alert("keycode =" + e.keyCode);
+  if(e.keyCode==13){//enter key
+		var username = "<?php echo $_SESSION['username'] ?>";
+    doSend(username + ":" + document.getElementById("message").value);
+    document.getElementById("message").value = "";
+  }
+}
+
+var sanitizeHTML = function (str) {
+  var temp = document.createElement('div');
+  temp.textContent = str;
+  return temp.innerHTML;
+};
+</script>
 <body>
 
 	<a href="changepasswordform.php">
@@ -74,6 +122,16 @@ $password = $_POST["password"];
 
 	<br><br><br>
 
+	<body onload="startTime()">
+	Current time: <div id="clock"></div>
+
+	Type message and enter to send: <input type = "text" id="message" size = "30" onkeypress="entertoSend(event)" onkeyup="myWebSocket.emit('typing')" />
+	<br>
+	<div id = "typing"></div>
+	Message from server:
+	<hr>
+	<div id = "receivedmessage"></div>
+
 
 <?php
 		$dbserver = "localhost";
@@ -81,9 +139,9 @@ $password = $_POST["password"];
 		$dbpassword = "root";
 		$dbname = "secad";
 		$date = date("Y-m-d H:i:s");
-	
 
-		
+
+
 
 		//connect to db for post echoing
 		$conn = new mysqli($dbserver, $dbusername, $dbpassword, $dbname);
@@ -99,7 +157,7 @@ $password = $_POST["password"];
 
 
 		if ($result->num_rows > 0){
-			//output the data 
+			//output the data
 			while ($row = $result->fetch_assoc()){
 				if ($row["username"] == $_SESSION["username"]){ //if the post is from the same user that's
 					echo "<div class='comment-box'><p><b>";									//logged in or if the user is a superuser
@@ -134,7 +192,7 @@ $password = $_POST["password"];
 				echo " | ";
 				echo $row["date"]."<br>";
 				echo $row["content"];
-				echo "</p>"; 
+				echo "</p>";
 
 				//else you can reply to a post because it is not yours
 				echo "<form class='comment-form' method='POST' action='commentPost.php'>";
