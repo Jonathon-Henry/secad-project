@@ -26,7 +26,8 @@ CREATE TABLE `posts` (
   `PostId` int(20) NOT NULL AUTO_INCREMENT,
   `username` varchar(75) NOT NULL,
   `date` datetime NOT NULL,
-  `message` text NOT NULL,
+  `content` varchar(50) DEFAULT NULL,
+  `title` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`PostId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -63,7 +64,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES ('admin','*203EFDF5A3AFEA758624E98711CE09A0FD34DA08','admin@secad.org','123-456-7890',1),('jacobScheetz','*203EFDF5A3AFEA758624E98711CE09A0FD34DA08','jacob@test.org','555-444-8888',0);
+INSERT INTO `users` VALUES ('admin','*203EFDF5A3AFEA758624E98711CE09A0FD34DA08','admin@secad.org','123-456-7890',1),('henryj14@udayton.edu','*203EFDF5A3AFEA758624E98711CE09A0FD34DA08',NULL,NULL,0),('jacobScheetz','*203EFDF5A3AFEA758624E98711CE09A0FD34DA08','jacob@test.org','555-444-8888',0);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -104,4 +105,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-07 20:33:49
+-- Dump completed on 2020-05-07 21:06:39
