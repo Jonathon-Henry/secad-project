@@ -138,7 +138,7 @@ error_reporting(E_ALL);
 
 		$result = $mysqli->query($sql);
 		header("Location: index.php");
-		}
+
 	}//end editPosts()
 
 	function deletePost($mysqli){
