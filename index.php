@@ -67,10 +67,9 @@ $password = $_POST["password"];
 	<h2>Write a Post</h2>
 	<!--- text area under here to write post, clicking the Post button should submit it via getPosts() function-->
 	<form method="POST" action='index.php'>
-		<input type="hidden" name="username" value='<?php $_SESSION["username"]?>'>
-		<input type="hidden" name="date" value='<?php date("Y-m-d h:i:sa") ?>'>
+		<textarea class="title-bar" placeholder="give your post a title" name="titlePost"></textarea><br>
 		<textarea placeholder="What's happening? write about it..." name="content"></textarea><br>
-		<button class='homepage-button' type='submit' name='writePost' action='index.php'> Write Post</button>
+		<button class='homepage-button' type='submit' name='Post'> Write Post</button>
 	</form>
 
 	<br><br><br>
@@ -81,13 +80,18 @@ $password = $_POST["password"];
 		$dbusername = "secad-jhjs";
 		$dbpassword = "root";
 		$dbname = "secad";
+		$date = date("Y-m-d H:i:s");
+	
+
 		
 
 		//connect to db for post echoing
 		$conn = new mysqli($dbserver, $dbusername, $dbpassword, $dbname);
 
-		$insertsql = "INSERT INTO posts (username, date, content, title) VALUES ('admin', '2020-12-05 12:39:16', 'this is a test', 'test')";
-		$conn->query($insertsql);
+
+
+			$insertsql = "INSERT INTO posts (username, date, content, title) VALUES ('$username', '$date', 'some content', 'title')";
+			$conn->query($insertsql);
 
 		//query the database
 		$sql = "SELECT * FROM posts";
@@ -96,11 +100,13 @@ $password = $_POST["password"];
 		if ($result->num_rows > 0){
 			//output the data 
 			while ($row = $result->fetch_assoc()){
-				echo "<div class='comment-box'><p>";
-				echo $row["username"]."<br>";
+				echo "<div class='comment-box'><p><b>";
+				echo $row["username"]."</b><br>";
 				echo $row["title"];
-				echo $row["date"];
+				echo " | ";
+				echo $row["date"]."<br>";
 				echo $row["content"];
+				echo "</p></div><br>";
 			}
 		} else {
 			echo "0 results";

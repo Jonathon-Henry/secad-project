@@ -31,6 +31,7 @@ button{
 	background-color: #fff;
 	border-radius: 4px;
 	position: relative;
+	border: 4px solid #4CAF50;
 }
 
 .comment-box p {
@@ -91,6 +92,13 @@ button{
 	cursor: pointer;
 	margin-bottom: 60px;
 	font-size: large;
+}
+
+.title-bar {
+	height: 40px;
+	width: 700px;
+	background-color: #fff;
+	resize: none;
 }
 
 
