@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 	date_default_timezone_set('America/Los_Angeles');
 	require ('database.php');
@@ -22,7 +25,7 @@
 	$username = $_POST['username'];
 	$date = $_POST['date'];
 	$message = $_POST['message'];
-	
+
 	echo "<form method='POST' action='".editComments($mysqli)."'>
 		<input type='hidden' name='PostId' value='".$PostId."'>
 		<input type='hidden' name='username' value='".$username."'>

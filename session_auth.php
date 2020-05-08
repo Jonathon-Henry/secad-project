@@ -1,14 +1,17 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 	$lifetime = 15 * 60;
-	$path = "/lab6";
-	$domain = "192.168.56.101";
+	$path = "/minifacebook";
+	$domain = "localhost";
 	$secure = TRUE;
 	$httponly = TRUE;
 	session_set_cookie_params($lifetime, $path, $domain, $secure, $httponly);
 	session_start();
 
 
-	//check the session 
+	//check the session
 	if (!isset($_SESSION["logged"]) or $_SESSION["logged"] != TRUE){
 		//the session is not authenicated
 		echo "<script>alert('you have to login first!');</script>";

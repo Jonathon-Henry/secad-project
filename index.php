@@ -1,16 +1,23 @@
 
 <?php
+//	require 'session_auth.php';
+//	require 'database.php';
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+$lifetime = 15 * 60;
+$path = "/minifacebook";
+$domain = "localhost";
+$secure = TRUE;
+$httponly = TRUE;
+session_set_cookie_params($lifetime, $path, $domain, $secure, $httponly);
+session_start();
+$username = $_POST["username"];
+$password = $_POST["password"];
 
-	$lifetime = 15 * 60;
-	$path = "/minifacebook";
-	$domain = "192.168.56.101";
-	$secure = TRUE;
-	$httponly = TRUE;
-	session_set_cookie_params($lifetime, $path, $domain, $secure, $httponly);
-	session_start(); 
 
-	if (isset($_POST["username"]) and isset($_POST["password"])){
-		if (securechecklogin($_POST["username"],$_POST["password"])) {
+	if (isset($username) and isset($password)){
+		if (securechecklogin($username,$password)) {
 			$_SESSION["logged"] = TRUE;
 			$_SESSION["username"] = $_POST["username"];
 			$_SESSION["browser"] = $_SERVER["HTTP_USER_AGENT"];
@@ -32,7 +39,7 @@
 		header("Refresh:0; url=form.php");
 		die();
 	}
-?>
+?>lab6
 
 
 <!DOCTYPE html>
@@ -45,7 +52,7 @@
 
 	<a href="changepasswordform.php">
 		<button class='homepage-button' type='submit' action='changepasswordform.php'>Change Password</button></a>
-	<h1> 
+	<h1>
 		Welcome, <?php echo htmlentities($_POST['username']); ?>!
 	</h1>
 	<div><b><font size="+3">
@@ -55,7 +62,7 @@
 		<br>
 		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		</font>
-		</b>	
+		</b>
 	</div>
 	<h2>Write a Post</h2>
 	<!--- text area under here to write post, clicking the Post button should submit it via getPosts() function-->
@@ -69,37 +76,39 @@
 	<br><br><br>
 
 
-<?php 
-		//$mysqli = new mysqli('localhost',
-							  //'root' /*Database username*/,  
-							 // 'seedubuntu'  /*Database password*/,                                    			
-							  //'secad' /*Database name*/);
-		//if($mysqli->connect_errno){
-			//printf("Database connection failed: %s\n", $mysqli->connect_error);
-			//exit();
+<?php
+/*
+		$mysqli = new mysqli('localhost',
+							  'secad-jhjs' //Database username,
+							  'root'  //Database password,
+							'secad' //Database name);
+		if($mysqli->connect_errno){
+			printf("Database connection failed: %s\n", $mysqli->connect_error);
+			exit();
 
   	$prepared_sql = "SELECT * FROM users;";
   	if(!$stmt = $mysqli->prepare($prepared_sql))
-		echo "Prepared SQL Statement Error: ".mysql_error();
+			echo "Prepared SQL Statement Error: ".mysql_error();
 
 	if(!$stmt->execute())
 		echo "Execute error";
 
-  	$username = NULL; $email = NULL; $phone =NULL;
+  $username = NULL; $email = NULL; $phone =NULL;
 	if(!$stmt->bind_result($username, $email, $phone))
 		echo "Binding failed ";
 
 	while($stmt->fetch()){
 		echo htmlentities($username);
 	}
+*/
 ?>
 
 
 
 
 
-			
-			
+
+
 
 
 
@@ -113,17 +122,17 @@
 
   	function securechecklogin($username, $password) {
 		$mysqli = new mysqli('localhost',
-							  'root' /*Database username*/,  
-							  'seedubuntu'  /*Database password*/,                                    			
+							  'secad-jhjs' /*Database username*/,
+							  'root'  /*Database password*/,
 							  'secad' /*Database name*/);
 		if($mysqli->connect_errno){
 			printf("Database connection failed: %s\n", $mysqli->connect_error);
 			exit();
 		}
-		$prepared_sql = "SELECT * FROM users WHERE username=? AND password = password(?)"; 
-		if(!$stmt = $mysqli->prepare($prepared_sql))	
+		$prepared_sql = "SELECT * FROM users WHERE username=? AND password = password(?)";
+		if(!$stmt = $mysqli->prepare($prepared_sql))
 			echo "Prepared Statement Error";
-		$stmt->bind_param("ss",$username,$password);			
+		$stmt->bind_param("ss",$username,$password);
 		if(!$stmt->execute()) echo "Execute Error";
 		if(!$stmt->store_result()) echo "Store result error";
 		$result = $stmt;
@@ -132,11 +141,6 @@
 		return FALSE;
   	}
 
- 
+
 
 ?>
-
-
-
-
-

@@ -9,6 +9,9 @@
       	<h1>Login for MiniFacebook, By Jacob Scheetz & Jonathon Henry</h1>
 
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
   //some code here
   echo "Current time: " . date("Y-m-d h:i:sa")
 ?>

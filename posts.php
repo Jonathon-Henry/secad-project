@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 	require 'database.php';
 	 //template for retrieving posts from the database
 
@@ -16,7 +19,7 @@
 		echo "Execute error";
 
 	//Bind the results to variables
-	$title = NULL; $content = NULL; $date=NULL; $postid=NULL;
+	$title = NULL; $content = NULL; $date=NULL; $PostId=NULL;
 	if(!$stmt->bind_result($username, $message, $date, $PostId))
 		echo "Binding failed ";
 
@@ -25,8 +28,8 @@
 		echo htmlentities($username) . ", " . htmlentities($message) . ", " .
 		htmlentities($date) . "<br>";
 		echo '<div><form action="changepostform.php" method="POST" class="form login">
-					<input type="hidden" name="postid" value="<?php echo htmlentities($PostId); ?>" /> <br>
-					<input type="hidden" name="username" value="<?php echo $_SESSION(["username"]); ?>" />
+					<input type="hidden" name="postid" value="<?php echo htmlentities(' . $PostId. '); ?>" /> <br>
+					<input type="hidden" name="username" value="<?php echo '. $_SESSION(["username"]) . '; ?>" />
 					<button name="edit-button" type="submit">
 						Edit
 					</button>
