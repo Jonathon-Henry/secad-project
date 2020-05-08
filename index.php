@@ -39,7 +39,7 @@ $password = $_POST["password"];
 		header("Refresh:0; url=form.php");
 		die();
 	}
-?>lab6
+?>
 
 
 <!DOCTYPE html>
@@ -69,7 +69,7 @@ $password = $_POST["password"];
 	<form method="POST" action='index.php'>
 		<input type="hidden" name="username" value='<?php $_SESSION["username"]?>'>
 		<input type="hidden" name="date" value='<?php date("Y-m-d h:i:sa") ?>'>
-		<textarea placeholder="What's happening? write about it..." name="message"></textarea><br>
+		<textarea placeholder="What's happening? write about it..." name="content"></textarea><br>
 		<button class='homepage-button' type='submit' name='writePost' action='index.php'> Write Post</button>
 	</form>
 
@@ -77,30 +77,34 @@ $password = $_POST["password"];
 
 
 <?php
-/*
-		$mysqli = new mysqli('localhost',
-							  'secad-jhjs' //Database username,
-							  'root'  //Database password,
-							'secad' //Database name);
-		if($mysqli->connect_errno){
-			printf("Database connection failed: %s\n", $mysqli->connect_error);
-			exit();
+		$dbserver = "localhost";
+		$dbusername = "secad-jhjs";
+		$dbpassword = "root";
+		$dbname = "secad";
 
-  	$prepared_sql = "SELECT * FROM users;";
-  	if(!$stmt = $mysqli->prepare($prepared_sql))
-			echo "Prepared SQL Statement Error: ".mysql_error();
+		//connect to db for post echoing
+		$conn = new mysqli($dbserver, $dbusername, $dbpassword, $dbname);
 
-	if(!$stmt->execute())
-		echo "Execute error";
+		//query the database
+		$sql = "SELECT * FROM posts";
+		$result = $conn->query($sql);
 
-  $username = NULL; $email = NULL; $phone =NULL;
-	if(!$stmt->bind_result($username, $email, $phone))
-		echo "Binding failed ";
+		if ($result->num_rows > 0){
+			//output the data 
+			while ($row = $result->fetch_assoc()){
+				echo "<div class='comment-box'><p>";
+				echo $row["username"]."<br>";
+				echo $row["title"];
+				echo $row["date"];
+				echo $row["content"];
+			}
+		} else {
+			echo "0 results";
+		}
+		$conn->close();
 
-	while($stmt->fetch()){
-		echo htmlentities($username);
-	}
-*/
+
+
 ?>
 
 
