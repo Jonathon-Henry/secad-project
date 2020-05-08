@@ -81,9 +81,13 @@ $password = $_POST["password"];
 		$dbusername = "secad-jhjs";
 		$dbpassword = "root";
 		$dbname = "secad";
+		
 
 		//connect to db for post echoing
 		$conn = new mysqli($dbserver, $dbusername, $dbpassword, $dbname);
+
+		$insertsql = "INSERT INTO posts (username, date, content, title) VALUES ('admin', '2020-12-05 12:39:16', 'this is a test', 'test')";
+		$conn->query($insertsql);
 
 		//query the database
 		$sql = "SELECT * FROM posts";
