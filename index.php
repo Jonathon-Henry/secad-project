@@ -1,7 +1,7 @@
 
 <?php
 //	require 'session_auth.php';
-//	require 'database.php';
+	require 'database.php';
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -90,23 +90,62 @@ $password = $_POST["password"];
 
 
 
-			$insertsql = "INSERT INTO posts (username, date, content, title) VALUES ('$username', '$date', 'some content', 'title')";
+			$insertsql = "INSERT INTO posts (username, date, content, title) VALUES ('$username', '$date', 'some new content for testing', 'a new title')";
 			$conn->query($insertsql);
 
 		//query the database
 		$sql = "SELECT * FROM posts";
 		$result = $conn->query($sql);
 
+
 		if ($result->num_rows > 0){
 			//output the data 
 			while ($row = $result->fetch_assoc()){
-				echo "<div class='comment-box'><p><b>";
+				if ($row["username"] == $_SESSION["username"]){ //if the post is from the same user that's
+					echo "<div class='comment-box'><p><b>";									//logged in or if the user is a superuser
+					echo $row["username"]."</b><br>";
+					echo $row["title"];
+					echo " | ";
+					echo $row["date"]."<br>";
+					echo $row["content"];
+					echo "</p>";
+
+					//delete post button
+					echo "<form class='delete-form' method='POST' action='".deletePost($conn)."'>";
+						echo "<input type='hidden' name='PostId' value='".$row['PostId']."'>";
+						echo "<button type='submit' name='postDelete'>Delete</button>";
+					echo "</form>";
+
+					//edit post button
+					echo "<form class='edit-form' method='POST' action='editPost.php'>";
+						echo "<input='hidden' name='PostId' value='".$row['PostId']."'";
+						echo "<input='hidden' name='username' value='".$row['username']."'>";
+						echo "<input='hidden' name='date' value='".$row['date']."'>";
+						echo "<input='hidden' name='content' value='".$row['content']."'>";
+						echo "<button>Edit</button>";
+					echo "</form>";
+
+					//end of content in comment box
+					echo "</div><br>";
+				} else {
+					echo "<div class='comment-box'><p><b>";
 				echo $row["username"]."</b><br>";
 				echo $row["title"];
 				echo " | ";
 				echo $row["date"]."<br>";
 				echo $row["content"];
-				echo "</p></div><br>";
+				echo "</p>"; 
+
+				//else you can reply to a post because it is not yours
+				echo "<form class='comment-form' method='POST' action='commentPost.php'>";
+						echo "<input='hidden' name='PostId' value='".$row['PostId']."'";
+						echo "<input='hidden' name='username' value='".$row['username']."'>";
+						echo "<input='hidden' name='date' value='".$row['date']."'>";
+						echo "<input='hidden' name='content' value='".$row['content']."'>";
+						echo "<button>Comment</button>";
+					echo "</form>";
+				echo "</div><br>";
+				}
 			}
 		} else {
 			echo "0 results";

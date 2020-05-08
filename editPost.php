@@ -1,0 +1,42 @@
+<?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+	date_default_timezone_set('America/Los_Angeles');
+	require "database.php";
+
+?>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="style.css">
+<meta charset="utf-8">
+	<title>Minifacebook Homepage</title>
+</head>
+<body>
+
+
+
+	<?php
+	$PostId = $_POST['PostId'];
+	$username = $_POST['username'];
+	$date = $_POST['date'];
+	$content = $_POST['content'];
+
+	echo "<form method='POST' action='".editPost($mysqli)."'>
+		<input type='hidden' name='PostId' value='".$PostId."'>
+		<input type='hidden' name='username' value='".$username."'>
+		<input type='hidden' name='date' value='".$date."'>
+		<textarea name='content'>".$content."</textarea><br>
+		<button type='submit' name='postSubmit'>Edit</button>
+		</form>";
+
+
+	?>
+
+
+</body>
+</html>
