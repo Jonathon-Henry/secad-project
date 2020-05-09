@@ -42,9 +42,9 @@ _Include a brief explanation of your implementation and the security aspects bas
 _You need to capture screenshots to demonstrate how your web application works. The screenshots must be accompanied by a short description of its functionalities following the implementation as below:_
 
 *   Everyone can register a new account and then login
-	![registering]("registering.png") ![registered]("registered.png")
+	![registering](registering.png) ![registered](registered.png)
 *   Superuser can disable an account 
-	![superuser capabilities]("admin-abilities.png")
+	![superuser capabilities](admin-abilities.png)
     *   The disabled account cannot log in
     [user enabled]("enabled.png")
 
@@ -52,7 +52,7 @@ _You need to capture screenshots to demonstrate how your web application works. 
     ![user diabled](disabled.png)
     *   The enabled user can log in
 *   A regular logged-in user can delete her own existing posts, but cannot delete the posts of others
-	![edit comment]("comment-edit-delete.png") [after delete]("after-delete.png")
+	![edit comment](comment-edit-delete.png) ![after delete](after-delete.png)
 *   CSRF attack to delete a post should be detected and prevented
 
 *   A logged-in user can have realtime chat with other logged-in users
@@ -60,5 +60,4 @@ _You need to capture screenshots to demonstrate how your web application works. 
 
 # Appendix
 
-Include the content (in text) of the README.md file, database.sql and all source code of your PHP files (with the file name).
-If you organize your project in sub-folders, include the files in the sub folders as well.
+text of the code is located in their respective files in this folder.
